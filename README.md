@@ -64,7 +64,7 @@ Antes de cifrar, `node --check` sobre el `<script>` de `fuente.html` y de `puert
 
 ## Publicar cambios
 
-    cd C:/GEU/proyectos-uja
+    cd C:/ProyectosUJA/proyectos-uja
     .\publicar.ps1          # PowerShell
     ./publicar.sh           # Git Bash
 
