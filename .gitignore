@@ -1,0 +1,12 @@
+# El documento en claro nunca se publica.
+fuente.html
+*.plain.html
+
+# La clave del cuaderno vive en Drive, no en el repositorio.
+clave.txt
+
+# Las piezas del documento en claro: juntas reconstruyen todo el contenido.
+_p1.html
+_p2.html
+_p3.html
+proyectos.js

@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Cuaderno Proyectos &middot; UJA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* ---------------------------------------------------------------- paleta
+   Neutra a proposito: el chasis va en grafito y el color lo ponen los
+   proyectos, cada uno con el suyo en el lomo. */
+:root{
+  --paper:#FFFFFF; --paper-2:#F4F5F7; --line:#DEE1E5; --line-2:#EBEDF0;
+  --ink:#17191C; --ink-2:#4A4F56; --ink-3:#6B717A;
+  --acento:#17191C;
+  --btn:#17191C; --on-btn:#FFFFFF;
+  --risk:#A6331F; --foco:#3A5DAE;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#101215; --paper-2:#181B1F; --line:#2A2F35; --line-2:#1E2227;
+    --ink:#ECEEF1; --ink-2:#B0B6BE; --ink-3:#848B94;
+    --acento:#ECEEF1;
+    --btn:#E8EAEE; --on-btn:#101215;
+    --risk:#E58166; --foco:#8AA6E0;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101215; --paper-2:#181B1F; --line:#2A2F35; --line-2:#1E2227;
+  --ink:#ECEEF1; --ink-2:#B0B6BE; --ink-3:#848B94;
+  --acento:#ECEEF1;
+  --btn:#E8EAEE; --on-btn:#101215;
+  --risk:#E58166; --foco:#8AA6E0;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Archivo","Helvetica Neue",Arial,sans-serif; font-size:16px; line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+
+.marco{min-height:100vh; min-height:100dvh; display:grid; grid-template-rows:1fr auto}
+.hoja{display:grid; grid-template-columns:1.04fr .96fr; min-height:0}
+
+.campo{
+  display:flex; flex-direction:column; justify-content:center;
+  padding:56px 6vw; border-right:1px solid var(--line); background:var(--paper);
+}
+.campo-in{max-width:520px}
+
+/* El logo va siempre sobre blanco: su trazo es verde muy oscuro. */
+.logo{display:block; width:min(146px,42%); height:auto; margin:0 0 30px; color:var(--ink)}
+
+
+.eyebrow{
+  font-family:"IBM Plex Mono",monospace; font-size:10.5px; font-weight:500; letter-spacing:.17em;
+  text-transform:uppercase; color:var(--ink-3); margin:0 0 14px; line-height:1.6; max-width:38ch;
+  padding-top:14px; border-top:1px solid var(--line);
+}
+h1{
+  font-family:"Fraunces",Georgia,serif; font-weight:600; font-variation-settings:"opsz" 96;
+  font-size:clamp(30px,3.4vw,45px); line-height:1.06; letter-spacing:-.024em;
+  margin:0; text-wrap:balance; color:var(--ink);
+}
+h1 em{
+  font-style:normal; display:block; color:var(--ink-3);
+  font-weight:500; font-size:.6em; letter-spacing:-.014em; margin-top:.24em;
+}
+.lede{color:var(--ink-2); font-size:15.5px; line-height:1.62; margin:22px 0 0; max-width:46ch}
+
+.cifras{
+  display:flex; gap:0; margin:34px 0 0; padding:16px 0 0; flex-wrap:wrap;
+  border-top:1px solid var(--line);
+}
+.cifras > div{margin:0; padding:0 28px; border-left:1px solid var(--line-2)}
+.cifras > div:first-child{padding-left:0; border-left:0}
+.cifras dt{
+  font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:27px; line-height:1;
+  letter-spacing:-.03em; color:var(--acento); font-variant-numeric:tabular-nums;
+}
+.cifras dd{
+  margin:7px 0 0; font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--ink-3); line-height:1.45;
+}
+
+.acceso{display:flex; align-items:center; justify-content:center; padding:56px 5vw; background:var(--paper)}
+.acceso-in{width:100%; max-width:372px}
+
+.sello{
+  font-family:"IBM Plex Mono",monospace; font-size:10px; font-weight:500; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--ink-3); margin:0 0 12px;
+  display:flex; align-items:center; gap:9px;
+}
+.sello::before{content:""; width:20px; height:1px; background:var(--ink-3); flex:none}
+
+h2{
+  font-family:"Fraunces",Georgia,serif; font-weight:600; font-variation-settings:"opsz" 40;
+  font-size:31px; line-height:1.1; letter-spacing:-.022em; margin:0; color:var(--ink);
+}
+.acceso-lede{color:var(--ink-2); font-size:14.5px; line-height:1.6; margin:12px 0 0}
+
+button{font:inherit; cursor:pointer; border:0}
+.entrar{
+  width:100%; margin-top:26px; padding:13px 18px; border-radius:4px;
+  background:var(--btn); color:var(--on-btn); font-size:15px; font-weight:600;
+  display:flex; align-items:center; justify-content:center; gap:12px;
+  transition:filter .16s ease, transform .16s ease;
+}
+.entrar:hover{filter:brightness(1.16)}
+.entrar:active{transform:translateY(1px)}
+.entrar:disabled{cursor:progress; filter:none; opacity:.82}
+.entrar:focus-visible{outline:2px solid var(--foco); outline-offset:2px}
+.g{width:22px; height:22px; border-radius:50%; background:#FFF; flex:none; display:grid; place-items:center}
+.g svg{width:14px; height:14px; display:block}
+.entrar.trabajando .g{display:none}
+
+.girador{
+  width:15px; height:15px; border:2px solid currentColor; border-right-color:transparent;
+  border-radius:50%; animation:giro .7s linear infinite; display:none; flex:none;
+}
+.entrar.trabajando .girador{display:block}
+@keyframes giro{to{transform:rotate(360deg)}}
+
+.otro{
+  width:100%; margin-top:8px; padding:10px; border-radius:4px; background:none;
+  color:var(--ink-3); font-size:13.5px; text-align:center;
+}
+.otro:hover{color:var(--ink); background:var(--paper-2)}
+.otro:focus-visible{outline:2px solid var(--foco); outline-offset:2px}
+
+.clave{display:none; margin-top:20px; padding-top:18px; border-top:1px solid var(--line-2)}
+.clave.on{display:block; animation:asoma .32s ease both}
+@keyframes asoma{from{opacity:0; transform:translateY(-6px)} to{opacity:1; transform:none}}
+.clave label{
+  font-family:"IBM Plex Mono",monospace; font-size:9.5px; font-weight:500; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--ink-3); display:block; margin-bottom:6px;
+}
+.clave input{
+  width:100%; padding:12px 13px; border:1px solid var(--line); border-radius:4px;
+  background:var(--paper-2); color:var(--ink);
+  font-family:"IBM Plex Mono",monospace; font-size:15px; letter-spacing:.06em;
+}
+.clave input::placeholder{color:var(--ink-3); opacity:.55}
+.clave input:focus{outline:2px solid var(--foco); outline-offset:1px; border-color:var(--foco)}
+.clave .sub{font-size:12.5px; color:var(--ink-3); margin:9px 0 0; line-height:1.5}
+
+.msg{font-size:13.5px; line-height:1.5; color:var(--risk); margin:16px 0 0; min-height:21px}
+.msg.work{color:var(--ink-3)}
+
+.ayuda{margin-top:26px; border-top:1px solid var(--line-2); padding-top:14px}
+.ayuda > summary{
+  cursor:pointer; list-style:none; font-size:13px; color:var(--ink-3);
+  display:flex; align-items:center; gap:7px;
+}
+.ayuda > summary::-webkit-details-marker{display:none}
+.ayuda > summary::before{content:"▸"; font-size:9px; transition:transform .18s ease}
+.ayuda[open] > summary::before{transform:rotate(90deg)}
+.ayuda > summary:hover{color:var(--ink)}
+.ayuda > summary:focus-visible{outline:2px solid var(--foco); outline-offset:3px; border-radius:2px}
+.ayuda p{font-size:13px; color:var(--ink-2); line-height:1.6; margin:11px 0 0}
+
+.pie{
+  margin:26px 0 0; font-family:"IBM Plex Mono",monospace; font-size:10px;
+  letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3); line-height:1.7;
+}
+
+/* ------------------------------------------------------------------ lomos
+   La franja del pie es el color de cada proyecto, uno al lado del otro. */
+.horizonte{display:flex; flex:none; height:9px}
+.horizonte i{display:block; flex:1}
+
+@keyframes sube{from{opacity:0; transform:translateY(14px)} to{opacity:1; transform:none}}
+@keyframes crece{from{transform:scaleY(0)} to{transform:scaleY(1)}}
+.campo-in > *, .acceso-in > *{animation:sube .62s cubic-bezier(.22,.7,.3,1) both}
+.campo-in > :nth-child(1){animation-delay:.04s}
+.campo-in > :nth-child(2){animation-delay:.10s}
+.campo-in > :nth-child(3){animation-delay:.16s}
+.campo-in > :nth-child(4){animation-delay:.22s}
+.campo-in > :nth-child(5){animation-delay:.28s}
+.acceso-in > :nth-child(1){animation-delay:.16s}
+.acceso-in > :nth-child(2){animation-delay:.21s}
+.acceso-in > :nth-child(3){animation-delay:.26s}
+.acceso-in > :nth-child(4){animation-delay:.31s}
+.acceso-in > :nth-child(5){animation-delay:.34s}
+.acceso-in > :nth-child(n+6){animation-delay:.38s}
+.horizonte{animation:crece .8s cubic-bezier(.2,.75,.28,1) both; transform-origin:50% 100%}
+/* Si las animaciones no llegan a correr, el contenido aparece igual. */
+html.listo .campo-in > *,
+html.listo .acceso-in > *,
+html.listo .horizonte{animation:none !important}
+
+@media (max-width:980px){
+  .hoja{grid-template-columns:1fr}
+  .campo{padding:40px 26px 34px; border-right:0; border-bottom:1px solid var(--line); justify-content:flex-start}
+  .campo-in{max-width:none}
+  .logo{width:120px; margin-bottom:24px}
+  .lede{display:none}
+  .acceso{padding:34px 26px 46px}
+  .acceso-in{max-width:420px}
+}
+@media (min-width:981px) and (max-height:850px){
+  .campo{padding:40px 6vw}
+  .logo{width:128px; margin-bottom:24px}
+  h1{font-size:clamp(28px,3vw,38px)}
+  .lede{margin-top:18px; font-size:15px}
+  .cifras{margin-top:26px}
+  .cifras dt{font-size:24px}
+  .acceso{padding:40px 5vw}
+}
+@media (min-width:981px) and (max-height:700px){
+  .lede{display:none}
+  .logo{width:110px; margin-bottom:20px}
+}
+@media (max-width:420px){
+  .cifras > div{padding:0 18px}
+  .cifras dd{font-size:10px; letter-spacing:.08em}
+  h2{font-size:27px}
+}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none !important; transition:none !important}
+}
+</style>
+</head>
+<body>
+
+<div class="marco">
+  <div class="hoja">
+
+    <section class="campo">
+      <div class="campo-in">
+        <svg class="logo" viewBox="0 0 132 96" role="img" aria-label="Panel de proyectos">
+          <g fill="none" stroke-width="4" stroke-linecap="square">
+            <rect x="4" y="26" width="124" height="66" rx="3" stroke="currentColor"></rect>
+            <path d="M4 40 H128" stroke="currentColor" opacity=".28"></path>
+            <path d="M4 56 H128" stroke="currentColor" opacity=".28"></path>
+            <path d="M4 72 H128" stroke="currentColor" opacity=".28"></path>
+          </g>
+          <g>
+            <rect x="14" y="8" width="22" height="20" rx="2" fill="#22386B"></rect>
+            <rect x="40" y="8" width="22" height="20" rx="2" fill="#137A38"></rect>
+            <rect x="66" y="8" width="22" height="20" rx="2" fill="#6B3FA0"></rect>
+            <rect x="92" y="8" width="22" height="20" rx="2" fill="#B45309"></rect>
+          </g>
+        </svg>
+        <p class="eyebrow">Universidad de Ja&eacute;n &middot; David Jurado</p>
+        <h1>Panel de proyectos<em>Todo lo que llevo entre manos</em></h1>
+        <p class="lede">
+          Los nueve proyectos activos en un sitio: qu&eacute; es cada uno, en qu&eacute; punto
+          est&aacute;, qu&eacute; vence, d&oacute;nde vive el c&oacute;digo y por d&oacute;nde se entra.
+        </p>
+        <dl class="cifras">
+          <div><dt>9</dt><dd>proyectos<br>activos</dd></div>
+          <div><dt>2</dt><dd>cuadernos<br>propios</dd></div>
+          <div><dt>1</dt><dd>puerta<br>para todo</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="acceso">
+      <div class="acceso-in">
+        <p class="sello">Acceso restringido</p>
+        <h2>Entrar</h2>
+        <p class="acceso-lede">
+          Con tu cuenta de la Universidad de Ja&eacute;n. El panel se descifra en tu propio
+          navegador y se sincroniza solo.
+        </p>
+
+        <button type="button" class="entrar" id="entrar">
+          <span class="g" aria-hidden="true">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" focusable="false">
+              <path fill="#4285F4" d="M45.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h11.8c-.5 2.8-2.1 5.1-4.4 6.7v5.6h7.1c4.2-3.8 6.6-9.5 6.6-16.3z"/>
+              <path fill="#34A853" d="M24 46c6 0 11-2 14.6-5.4l-7.1-5.6c-2 1.3-4.5 2.1-7.5 2.1-5.8 0-10.6-3.9-12.4-9.1H4.3v5.8C7.9 41.1 15.4 46 24 46z"/>
+              <path fill="#FBBC05" d="M11.6 28c-.5-1.3-.7-2.7-.7-4.1s.3-2.8.7-4.1v-5.8H4.3C2.8 16.9 2 20.3 2 23.9s.8 7 2.3 9.9l7.3-5.8z"/>
+              <path fill="#EA4335" d="M24 10.7c3.3 0 6.2 1.1 8.5 3.3l6.3-6.3C35 4.1 30 2 24 2 15.4 2 7.9 6.9 4.3 14.1l7.3 5.8c1.8-5.2 6.6-9.2 12.4-9.2z"/>
+            </svg>
+          </span>
+          <span class="girador"></span>
+          <span id="btxt">Entrar con Google</span>
+        </button>
+
+        <button type="button" class="otro" id="otra" style="display:none">Entrar con otra cuenta</button>
+
+        <div class="clave" id="caja-clave">
+          <label for="clave">Clave del cuaderno</label>
+          <input id="clave" type="password" spellcheck="false" autocomplete="off"
+                 placeholder="XXXX-XXXX-XXXX-XXXX">
+          <p class="sub">
+            Solo la primera vez. Queda guardada en la carpeta de Drive del panel para que no
+            haya que volver a escribirla.
+          </p>
+        </div>
+
+        <p class="msg" id="m" role="status" aria-live="polite"></p>
+
+        <details class="ayuda">
+          <summary>No consigo entrar</summary>
+          <p>
+            El acceso lo da la carpeta de Drive <b>Cuaderno Proyectos (UJA)</b>. Este panel es
+            personal: normalmente no se comparte con nadie.
+          </p>
+        </details>
+
+        <p class="pie">
+          Universidad de Ja&eacute;n<br>Panel personal de proyectos
+        </p>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="horizonte" aria-hidden="true">
+    <i style="background:#22386B"></i><i style="background:#137A38"></i>
+    <i style="background:#6B3FA0"></i><i style="background:#0E7490"></i>
+    <i style="background:#B45309"></i><i style="background:#0F766E"></i>
+    <i style="background:#7C2D5A"></i><i style="background:#334155"></i>
+    <i style="background:#9A3412"></i>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  setTimeout(function(){ document.documentElement.classList.add("listo"); }, 2200);
+
+  var SALT = "__SALT__";
+  var IV   = "__IV__";
+  var ITER = __ITER__;
+  var CT   = [
+__BLOB__
+  ].join("");
+
+  var CLIENTE = "380723686156-aogcbitj0uhtodbbm1qdmnlls9f2gart.apps.googleusercontent.com";
+  var AMBITO  = "https://www.googleapis.com/auth/drive";
+  var CARPETA = "Cuaderno Proyectos (UJA)";
+  var LLAVERO = "clave-cuaderno.txt";
+
+  var boton = document.getElementById("entrar");
+  var otra  = document.getElementById("otra");
+  var btxt  = document.getElementById("btxt");
+  var msg   = document.getElementById("m");
+  var caja  = document.getElementById("caja-clave");
+  var campo = document.getElementById("clave");
+
+  var token = null, carpeta = null, pidiendoClave = false;
+
+  function di(txt, trabajando){
+    msg.textContent = txt || "";
+    msg.className = trabajando ? "msg work" : "msg";
+  }
+  function ocupado(si, texto){
+    boton.disabled = si;
+    boton.classList.toggle("trabajando", si);
+    if (texto) btxt.textContent = texto;
+  }
+  function bytes(b64){
+    var bin = atob(b64), out = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+    return out;
+  }
+
+  function cargaGis(){
+    return new Promise(function(ok, mal){
+      if (window.google && google.accounts && google.accounts.oauth2) return ok();
+      var sc = document.createElement("script");
+      sc.src = "https://accounts.google.com/gsi/client";
+      sc.async = true; sc.defer = true;
+      sc.onload = ok;
+      sc.onerror = function(){ mal(new Error("No se pudo cargar el acceso de Google.")); };
+      document.head.appendChild(sc);
+    });
+  }
+
+  function pideToken(forzar){
+    return cargaGis().then(function(){
+      return new Promise(function(ok, mal){
+        var cli = google.accounts.oauth2.initTokenClient({
+          client_id: CLIENTE,
+          scope: AMBITO,
+          callback: function(r){
+            if (r && r.access_token){
+              token = r.access_token;
+              try {
+                sessionStorage.setItem("pu_token", token);
+                sessionStorage.setItem("pu_token_exp",
+                  String(Date.now() + (parseInt(r.expires_in, 10) || 3600) * 1000));
+              } catch(e){}
+              ok(token);
+            } else mal(new Error("No se concedió el acceso."));
+          },
+          error_callback: function(err){
+            mal(new Error(err && err.type === "popup_closed"
+              ? "Se ha cerrado la ventana de Google."
+              : "No se pudo abrir el acceso de Google."));
+          }
+        });
+        cli.requestAccessToken({prompt: forzar ? "select_account" : ""});
+      });
+    });
+  }
+
+  function api(url, opciones){
+    opciones = opciones || {};
+    opciones.headers = opciones.headers || {};
+    opciones.headers.Authorization = "Bearer " + token;
+    return fetch(url, opciones).then(function(rp){
+      if (rp.status === 401) throw new Error("La sesión de Google no es válida.");
+      if (rp.status === 403) throw new Error("Tu cuenta no tiene permiso sobre el Drive del cuaderno.");
+      if (!rp.ok) throw new Error("Google respondió " + rp.status + ".");
+      return rp;
+    });
+  }
+
+  function buscaCarpeta(){
+    var q = encodeURIComponent("name='" + CARPETA + "' and mimeType='application/vnd.google-apps.folder' and trashed=false");
+    return api("https://www.googleapis.com/drive/v3/files?q=" + q +
+               "&fields=files(id)&supportsAllDrives=true&includeItemsFromAllDrives=true")
+      .then(function(r){ return r.json(); })
+      .then(function(d){ return (d.files && d.files[0]) ? d.files[0].id : null; });
+  }
+
+  function creaCarpeta(){
+    return api("https://www.googleapis.com/drive/v3/files?fields=id", {
+      method:"POST", headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({name:CARPETA, mimeType:"application/vnd.google-apps.folder"})
+    }).then(function(r){ return r.json(); }).then(function(f){ return f.id; });
+  }
+
+  function leeClave(car){
+    var q = encodeURIComponent("name='" + LLAVERO + "' and '" + car + "' in parents and trashed=false");
+    return api("https://www.googleapis.com/drive/v3/files?q=" + q +
+               "&fields=files(id)&supportsAllDrives=true&includeItemsFromAllDrives=true")
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if (!d.files || !d.files.length) return null;
+        return api("https://www.googleapis.com/drive/v3/files/" + d.files[0].id + "?alt=media")
+          .then(function(r){ return r.text(); })
+          .then(function(t){ return t.trim(); });
+      });
+  }
+
+  function guardaClave(car, clave){
+    return api("https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id", {
+      method:"POST",
+      headers:{"Content-Type":"multipart/related; boundary=lim"},
+      body:"--lim\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n" +
+           JSON.stringify({name:LLAVERO, parents:[car]}) +
+           "\r\n--lim\r\nContent-Type: text/plain\r\n\r\n" + clave + "\r\n--lim--"
+    });
+  }
+
+  function descifra(frase){
+    return crypto.subtle.importKey("raw", new TextEncoder().encode(frase), "PBKDF2", false, ["deriveKey"])
+      .then(function(km){
+        return crypto.subtle.deriveKey(
+          {name:"PBKDF2", salt:bytes(SALT), iterations:ITER, hash:"SHA-256"},
+          km, {name:"AES-GCM", length:256}, false, ["decrypt"]);
+      })
+      .then(function(key){
+        return crypto.subtle.decrypt({name:"AES-GCM", iv:bytes(IV)}, key, bytes(CT));
+      })
+      .then(function(plano){ return new TextDecoder().decode(plano); });
+  }
+
+  function abre(html, clave){
+    try {
+      sessionStorage.setItem("pu_carpeta", carpeta || "");
+      sessionStorage.setItem("pu_auto", "1");
+      /* La clave se queda en la pestana, no en el disco: al cerrarla se va y
+         hay que volver a pasar por Google. */
+      if (clave) sessionStorage.setItem("pu_clave", clave);
+    } catch(e){}
+    document.open(); document.write(html); document.close();
+  }
+
+  function entra(forzar){
+    if (!window.crypto || !window.crypto.subtle){
+      di("Este navegador no permite descifrar la página. Usa Chrome, Firefox, Edge o Safari actualizados.");
+      return;
+    }
+    ocupado(true, "Entrando…");
+    di("Comprobando tu acceso…", true);
+
+    pideToken(forzar)
+      .then(function(){ otra.style.display = "block"; return buscaCarpeta(); })
+      .then(function(c){
+        carpeta = c;
+        if (!c) return null;
+        di("Abriendo el cuaderno…", true);
+        return leeClave(c);
+      })
+      .then(function(clave){
+        if (clave === null){
+          pidiendoClave = true;
+          caja.classList.add("on");
+          ocupado(false, "Guardar y entrar");
+          di(carpeta
+            ? "Primera vez con esta cuenta: pega la clave del cuaderno."
+            : "Con esta cuenta no ves la carpeta del cuaderno. Si tienes la clave, pégala; "
+              + "si no, pide que te compartan la carpeta.");
+          setTimeout(function(){ campo.focus(); }, 40);
+          return;
+        }
+        return descifra(clave).then(function(html){ abre(html, clave); }, function(){
+          pidiendoClave = true;
+          caja.classList.add("on");
+          ocupado(false, "Guardar y entrar");
+          di("La clave guardada en Drive no abre este cuaderno. Pega la correcta.");
+        });
+      })
+      .catch(function(err){
+        ocupado(false, "Entrar con Google");
+        di(err.message || "No se pudo entrar.");
+      });
+  }
+
+  function guardaYEntra(){
+    var clave = campo.value.trim().toUpperCase();
+    if (!clave){ di("Escribe la clave."); campo.focus(); return; }
+    ocupado(true, "Comprobando…");
+    di("", true);
+    descifra(clave).then(function(html){
+      var listo = function(){ abre(html, clave); };
+      (carpeta ? Promise.resolve(carpeta) : creaCarpeta())
+        .then(function(c){ carpeta = c; return guardaClave(c, clave); })
+        .then(listo, listo);
+    }, function(){
+      ocupado(false, "Guardar y entrar");
+      di("Esa clave no abre el cuaderno.");
+      campo.select();
+    });
+  }
+
+  boton.addEventListener("click", function(){
+    if (pidiendoClave) guardaYEntra(); else entra(false);
+  });
+
+  /* Ya se entro en esta pestana: recargar no vuelve a pasar por Google. */
+  (function(){
+    var guardada = null;
+    try { guardada = sessionStorage.getItem("pu_clave"); } catch(e){}
+    if (!guardada) return;
+    try { carpeta = sessionStorage.getItem("pu_carpeta") || null; } catch(e){}
+    ocupado(true, "Abriendo…");
+    di("Abriendo el cuaderno…", true);
+    descifra(guardada).then(function(html){ abre(html, guardada); }, function(){
+      try { sessionStorage.removeItem("pu_clave"); } catch(e){}
+      ocupado(false, "Entrar con Google");
+      di("");
+    });
+  })();
+
+  otra.addEventListener("click", function(){
+    try { sessionStorage.removeItem("pu_clave"); } catch(e){}
+    pidiendoClave = false; caja.classList.remove("on"); entra(true);
+  });
+  campo.addEventListener("keydown", function(e){ if (e.key === "Enter") guardaYEntra(); });
+})();
+</script>
+</body>
+</html>
