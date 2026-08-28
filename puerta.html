@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Panel de proyectos &middot; UJA</title>
+<title>Gestor de Proyectos &middot; UJA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -18,6 +18,7 @@
   --acento:#17191C;
   --btn:#17191C; --on-btn:#FFFFFF;
   --risk:#A6331F; --foco:#3A5DAE;
+  --verde:#118243;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
@@ -26,6 +27,7 @@
     --acento:#ECEEF1;
     --btn:#E8EAEE; --on-btn:#101215;
     --risk:#E58166; --foco:#8AA6E0;
+    --verde:#35A065;
   }
 }
 :root[data-theme="dark"]{
@@ -34,6 +36,7 @@
   --acento:#ECEEF1;
   --btn:#E8EAEE; --on-btn:#101215;
   --risk:#E58166; --foco:#8AA6E0;
+  --verde:#35A065;
 }
 
 *{box-sizing:border-box}
@@ -53,8 +56,13 @@ body{
 }
 .campo-in{max-width:520px}
 
-/* El logo va siempre sobre blanco: su trazo es verde muy oscuro. */
-.logo{display:block; width:min(146px,42%); height:auto; margin:0 0 30px; color:var(--ink)}
+/* Marca «uja. | Gestor de Proyectos»: texto en tinta, punto y raya en verde UJA. */
+.marca{display:flex; align-items:stretch; gap:18px; margin:0 0 30px; color:var(--ink)}
+.m-uja{font-weight:700; font-size:54px; line-height:.78; letter-spacing:-.05em; align-self:center}
+.m-uja i{display:inline-block; width:.16em; height:.16em; background:var(--verde); margin-left:.08em}
+.m-raya{width:4px; border-radius:2px; background:var(--verde)}
+.m-txt{align-self:center; font-size:20px; line-height:1.16; letter-spacing:-.012em; font-weight:400}
+.m-txt b{font-weight:700}
 
 
 .eyebrow{
@@ -198,14 +206,18 @@ html.listo .horizonte{animation:none !important}
   .hoja{grid-template-columns:1fr}
   .campo{padding:40px 26px 34px; border-right:0; border-bottom:1px solid var(--line); justify-content:flex-start}
   .campo-in{max-width:none}
-  .logo{width:120px; margin-bottom:24px}
+  .marca{margin-bottom:24px; gap:14px}
+  .m-uja{font-size:42px}
+  .m-txt{font-size:16px}
   .lede{display:none}
   .acceso{padding:34px 26px 46px}
   .acceso-in{max-width:420px}
 }
 @media (min-width:981px) and (max-height:850px){
   .campo{padding:40px 6vw}
-  .logo{width:128px; margin-bottom:24px}
+  .marca{margin-bottom:24px}
+  .m-uja{font-size:46px}
+  .m-txt{font-size:18px}
   h1{font-size:clamp(28px,3vw,38px)}
   .lede{margin-top:18px; font-size:15px}
   .cifras{margin-top:26px}
@@ -214,7 +226,9 @@ html.listo .horizonte{animation:none !important}
 }
 @media (min-width:981px) and (max-height:700px){
   .lede{display:none}
-  .logo{width:110px; margin-bottom:20px}
+  .marca{margin-bottom:20px}
+  .m-uja{font-size:40px}
+  .m-txt{font-size:16px}
 }
 @media (max-width:420px){
   .cifras > div{padding:0 18px}
@@ -234,30 +248,21 @@ html.listo .horizonte{animation:none !important}
 
     <section class="campo">
       <div class="campo-in">
-        <svg class="logo" viewBox="0 0 132 96" role="img" aria-label="Panel de proyectos">
-          <g fill="none" stroke-width="4" stroke-linecap="square">
-            <rect x="4" y="26" width="124" height="66" rx="3" stroke="currentColor"></rect>
-            <path d="M4 40 H128" stroke="currentColor" opacity=".28"></path>
-            <path d="M4 56 H128" stroke="currentColor" opacity=".28"></path>
-            <path d="M4 72 H128" stroke="currentColor" opacity=".28"></path>
-          </g>
-          <g>
-            <rect x="14" y="8" width="22" height="20" rx="2" fill="#22386B"></rect>
-            <rect x="40" y="8" width="22" height="20" rx="2" fill="#137A38"></rect>
-            <rect x="66" y="8" width="22" height="20" rx="2" fill="#6B3FA0"></rect>
-            <rect x="92" y="8" width="22" height="20" rx="2" fill="#B45309"></rect>
-          </g>
-        </svg>
-        <p class="eyebrow">Universidad de Ja&eacute;n &middot; David Jurado</p>
-        <h1>Panel de proyectos<em>Todo lo que llevo entre manos</em></h1>
+        <div class="marca" role="img" aria-label="UJA · Gestor de Proyectos">
+          <span class="m-uja" aria-hidden="true">UJA<i></i></span>
+          <span class="m-raya" aria-hidden="true"></span>
+          <span class="m-txt" aria-hidden="true">Gestor de<br><b>Proyectos</b></span>
+        </div>
+        <p class="eyebrow">Universidad de Ja&eacute;n</p>
+        <h1>Todo lo que llevo entre manos</h1>
         <p class="lede">
-          Los nueve proyectos activos en un sitio: qu&eacute; es cada uno, en qu&eacute; punto
-          est&aacute;, qu&eacute; vence, d&oacute;nde vive el c&oacute;digo y por d&oacute;nde se entra.
+          Las tareas, los plazos y la bit&aacute;cora de los nueve proyectos activos en una sola
+          agenda: qu&eacute; vence, qu&eacute; est&aacute; en marcha y por d&oacute;nde se entra a cada cuaderno.
         </p>
         <dl class="cifras">
           <div><dt>9</dt><dd>proyectos<br>activos</dd></div>
           <div><dt>2</dt><dd>cuadernos<br>propios</dd></div>
-          <div><dt>1</dt><dd>puerta<br>para todo</dd></div>
+          <div><dt>1</dt><dd>agenda<br>para todo</dd></div>
         </dl>
       </div>
     </section>
@@ -299,7 +304,7 @@ html.listo .horizonte{animation:none !important}
         <p class="msg" id="m" role="status" aria-live="polite"></p>
 
         <p class="pie">
-          Universidad de Ja&eacute;n<br>Panel personal de proyectos
+          Universidad de Ja&eacute;n
         </p>
       </div>
     </section>
